@@ -1,16 +1,77 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,100&family=Raleway:wght@100&display=swap');
+:root {
+  --color-primary: #10163A;
+  --color-secondary: #212744;
+  --color-background: #262C49;
+  --color-gray-light: #7DA1BC;
+  --color-blue-light: #00CFFF;
+  --color-white: #FFFFFF;
+  --color-hover: #055bd8;
+  --color-active: #71efff;
+}
+
+
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    padding: 0;
+    margin: 0;
+    font-family: 'Raleway', sans-serif;
+    background: var(--color-background);
+    color: rgb(3, 3, 3);
+    display: block;
+    overflow-x: hidden;
+}
+
+body, .sticky-footer-wrapper {
+    min-height:100vh;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    text-decoration: none;
+    color: var(--color-hover);
+}
+
+a:hover svg {
+    transition: color 0.2s;
+    color: var(--color-hover);
+}
+
+a:active,
+a:active svg {
+    color: var(--color-active);
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.7);
+    transition: filter 0.2s;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    filter: invert(1);
+}
+
+
+
+/* individual Card */
+
+.card {
+    background-color: var(--color-primary);
+    color: white;
+}
+.clickable_effect:hover {
+    
+  opacity: 0.8;
+  transform: scale(1.01);
+  cursor: pointer;
 }

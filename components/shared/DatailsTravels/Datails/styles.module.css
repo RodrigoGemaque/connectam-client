@@ -1,0 +1,28 @@
+.background {
+  background-color: var(--color-primary);
+  padding:10px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+  border-radius: 5px;
+  margin-bottom: 3px;
+  
+}
+
+
+.background svg {
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.background svg:hover {
+  color: var(--color-hover);
+}
+
+.background svg:active {
+  color: var(--color-active);
+}
+
+.container {
+  margin-left: 3px;
+}

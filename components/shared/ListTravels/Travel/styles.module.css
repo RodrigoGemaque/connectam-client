@@ -1,0 +1,40 @@
+.background {
+  background-color: var(--color-primary);
+  padding: 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+  border-radius: 5px;
+  
+}
+
+
+.background svg {
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.background svg:hover {
+  color: var(--color-hover);
+}
+
+.background svg:active {
+  color: var(--color-active);
+}
+
+
+
+.cart_container {
+  margin-top: 5px;
+  margin-left: -1rem;
+
+  
+}
+
+.price_container {
+  margin-top: 2px;
+  margin-left: 7rem;
+  
+}
+
+
