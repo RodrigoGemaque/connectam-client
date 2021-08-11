@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { useState } from 'react'
 import createOrder from '../../../../services/createOrder'
 
-import TicketForm from '../../NewTicket/TicketForm'
 
 import { useRouter } from 'next/router'
 
@@ -12,11 +11,13 @@ import { useRouter } from 'next/router'
 // redux
 import { useSelector, useDispatch } from 'react-redux'
 import { clearCartTravels } from '../../../../store/modules/storefront/cart/reducer'
-import createTicket from '../../../../services/createTicket'
+
+import {clearList} from '../../../../store/modules/admin/form_passager/reducer'
 
 
 function OrderForm() {
   const cartTravels = useSelector(state => state.cartTravels)
+  const passagers = useSelector(state => state.form_passager)
   const [error, setError] = useState(null)
   const router = useRouter()
   const dispatch = useDispatch()
@@ -26,54 +27,37 @@ function OrderForm() {
   //   router.push('/travels')
   // }
 
+  let items_passagers =  passagers.map(p => ({
+    'name': p.name,
+    'cpf': p.cpf,
+    'email': p.email
+  }))
+  
+
+  console.log(cartTravels)
+  
+  console.log(items_passagers)
   const [order, setOrder] = useState({
-
-    line_items_attributes: cartTravels.map(t => (
-     
-      { 'travel_id': t.id, 'quantity': t.quantity }
-    )),
-
-  })
-
-
-
-  const [ticket, setTicket] = useState({
-
-    line_items_attributes: cartTravels.map(t => (
-      {
-        name: '',
-        cpf: "",
-        phone_number: '',
-      }
-    )),
+    'user_id': 1,    
+    line_items_attributes: cartTravels.map(t => ({ 
+      'travel_id': t.id, 'quantity': t.quantity, tickets_attributes: items_passagers
+    })),
 
   })
-
-
-
-
-
-  // const updateOrderState = (e) => {
-  //   setOrder({ ...order, [e.target.name]: e.target.value })
-  // }
-
-  const updateTicketState = (e) => {
-    setOrder({ ...ticket, [e.target.name]: e.target.value })
-  }
 
 
   const submitOrder = async (e) => {
     e.preventDefault()
   
     try {
-      await createOrder(order)
-      // await createTicket(ticket)
-      
+      await createOrder(order)      
       router.push('/order/success')
 
-      dispatch(clearCartTravels())
+      dispatch(clearCartTravels() )
+      dispatch(clearList())
     } catch (error) {
       setError(true)
+      console.log(error)
     }
   }
 
@@ -85,50 +69,7 @@ function OrderForm() {
     <Form onSubmit={e => submitOrder(e)}>
 
       <h4 className='fw-bold mb-5'>Finalizar pedido</h4>
-      {/* <Form.Group>
-        <Form.Label>Nome completo</Form.Label>
-        <Form.Control
-          required
-          type="text"
-          placeholder="Dennis Ritchie..."
-          onChange={updateTicketState}
-          value={ticket.name}
-          name="name"
-        />
-      </Form.Group>
-      <Form.Group className='mt-3'>
-        <Form.Label>CPF</Form.Label>
-        <Form.Control
-          required
-          type="text"
-          placeholder="000.000.000-00"
-          onChange={updateTicketState}
-          value={ticket.cpf}
-          name="cpf"
-        />
-      </Form.Group> */}
-      {/* <TicketForm/> */}
-      
-      {/* <Form.Group className='mt-3'>
-        <Form.Label>Contato</Form.Label>
-        <Form.Control
-          required
-          type="text"
-          placeholder="(00) 00000-0000"
-          onChange={updateTicketState}
-          value={ticket.phone_number}
-          name="phone_number"
-        />
-      </Form.Group> */}
-
-
-
-      {/* <div className="mt-5"> */}
-      {/* <p className='fw-bolder'>Entregar em:</p> */}
-      {/* <p><small>{address.street}, {address.number} {address.neighborhood}, {address.city}</small></p> */}
-      {/* </div> */}
-
-
+   
       {cartTravels.length > 0 &&
         <div className="text-center">
           <Button type="submit" size="lg" className="mt-4 text-white">
