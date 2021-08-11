@@ -13,7 +13,6 @@ const getTravels = () => {
 
 
 
-
   let params = ''
   
   if (departure && arrival&& date){

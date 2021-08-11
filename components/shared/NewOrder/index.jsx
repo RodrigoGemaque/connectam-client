@@ -1,5 +1,4 @@
 import { Row, Col, Card } from 'react-bootstrap';
-// import CartList from '../../StoreFront/CartList';
 import Cart from '../../StoreFront/Cart';
 import OrderForm from './OrderForm';
 import TicketForm from '../NewTicket/TicketForm';
@@ -15,10 +14,6 @@ export default function NewOrder() {
           <Card className='p-5 mb-4'>
             <h5 className='text-center'>Resumo da Compra</h5>
             <Cart />
-          </Card>
-
-          <Card className= 'p-5 mb-4'>
-            <TicketForm/>
           </Card>
         </Col>
         <Col md={{ span: 4 }}>

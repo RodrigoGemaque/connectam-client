@@ -15,18 +15,13 @@ import { useSelector, useDispatch } from 'react-redux'
 export default function AddProductModal(props) {
 
   //Redux
-
   const cartTravels = useSelector(state => state.cartTravels)
   const dispatch = useDispatch();
   //Redux
 
-  // console.log(props)
-  const travel = { ...props.travel, ...{ 'quantity': quantity } }
 
 
-  // console.log(cartTravels)
 
-  // const newvalue = [...cartTravels, travel]
 
   //Quantidade de Viagens
   const [quantity, setQuantity] = useState(1);
@@ -43,7 +38,7 @@ export default function AddProductModal(props) {
     //   dispatch(addCartTravel([...cartTravels, travel]))
 
 
-    // setQuantity(1);
+    setQuantity(1);
     props.onHide();
 
     //   else
@@ -104,7 +99,7 @@ export default function AddProductModal(props) {
 
         </Row>
         <Form onSubmit={addProduct} className='d-flex'>
-          {/* <Form.Group>
+          <Form.Group>
             <Form.Control
               required
               type="number"
@@ -114,7 +109,7 @@ export default function AddProductModal(props) {
              
               onChange={(e) => setQuantity(e.target.value)}
             />
-          </Form.Group> */}
+          </Form.Group>
           <Button variant="primary"
             type="submit"
             className="text-white ms-6">

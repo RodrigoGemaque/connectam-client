@@ -30,13 +30,13 @@
   margin-right: 5%;
 }
 .title {
-  margin-bottom: 5vh;
+  margin-bottom: 7vh;
   font-family: sans-serif;
 }
 
 .card {
   margin: auto;
-  margin-bottom: 50%;
+  margin-bottom: 10%;
   max-width: 100%;
   width: 80%;
   box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -46,7 +46,7 @@
 
 @media(max-width:767px) {
   .card {
-      margin: 3vh auto
+      margin: 5vh auto
   }
 }
 
