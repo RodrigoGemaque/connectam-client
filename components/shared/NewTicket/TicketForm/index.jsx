@@ -1,4 +1,4 @@
-import {  Button ,Form } from 'react-bootstrap'
+import { Button, Form, Card, Row, Col } from 'react-bootstrap'
 import Link from 'next/link'
 // redux
 import { useSelector, useDispatch } from 'react-redux'
@@ -18,27 +18,53 @@ function TicketForm() {
 
 
   var totalQuantity = cartTravels.reduce(function (accumulator, travel) {
-    return accumulator + parseInt(travel.quantity)
+    return accumulator + (travel.quantity)
   }, 0)
 
 
+  
+  
 
-  console.log(totalQuantity)
+  //gerar um array com todas as posicoes da soma da quantidade com seu respctivo id
+    let quantity1 = []  
+    let quantity2 = []  
+    cartTravels.forEach(function(travel){
+      if(travel.quantity > 1){
+        for(i = 1; i <= travel.quantity; i++){
+          let j = i
+          quantity1.push({ travel_id: travel.id, quantity: 1, j}) 
+        }
+      }else if(travel.quantity == 1){
+        for(i = 1; i <= travel.quantity; i++){
+          let j = Math.random().toFixed(2)
+          quantity1.push({ travel_id: travel.id, quantity: 1, j}) 
+        }
+        
+      }
 
+    })
+    
+    // console.log( quantity1)
+    // console.log(quantity2)
+    const newArr = quantity1.concat(quantity2)
+    // console.log(newArr)
 
   //Estados do form
 
 
   //Adicionar Passageiro
   const listPassager = () => {
-    test.map((e)=> {
-    let name = document.getElementById(`name${e}`).value  
-    let cpf = document.getElementById(`cpf${e}`).value  
-    let email = document.getElementById(`email${e}`).value  
+    newArr.map((e) => {
+      let name = document.getElementById(`name${e.j}`).value
+      let cpf = document.getElementById(`cpf${e.j}`).value
+      let email = document.getElementById(`email${e.j}`).value
+      let travel_id = e.travel_id
       let passager = {
         name: name,
         cpf: cpf,
-        email: email
+        email: email,
+        travel_id: travel_id
+       
       }
       dispatch(addPassager(passager))
     })
@@ -49,20 +75,28 @@ function TicketForm() {
     test.push(i)
   }
 
-  
+  console.log(test)
+  console.log(newArr)
 
 
   return (
     <>
-      <h4 className='fw-bold mb-5 text-center'>Dados do Passageiro</h4>
-      <h4 className='fw-bold mb-5 text-center'>Preencha e confirme  passageiro(a)</h4>
-      {test?.map((e) =>
-        
-        <div className="mb-4" >
+    <Row>
+      <Col>
+      <Card>
+
+      <h4 className='fw-bold mb-5 text-center'>Dados do Passageiro(s)</h4>
+      <h4 className='fw-bold mb-5 text-center'>Preencha e confirme as Informacoes  </h4>
+
+      </Card>
+      {newArr?.map((e) =>
+        <div className="mb-3 mt-3" key={e.j}>
+          <Card className='p-3 mb-3'>
+          <h4>viagem id {e.travel_id}</h4>
           <Form.Group>
             <Form.Label>Nome completo</Form.Label>
             <Form.Control
-              id = {`name${e}`}
+              id={`name${e.j}`}
               required
               type="text"
               placeholder="Dennis Ritchie..."
@@ -71,11 +105,10 @@ function TicketForm() {
               className='mb-2'
             />
           </Form.Group>
-
           <Form.Group className='mt-3'>
             <Form.Label>CPF</Form.Label>
             <Form.Control
-              id = {`cpf${e}`}
+              id={`cpf${e.j}`}
               required
               type="text"
               placeholder="000.000.000-00"
@@ -85,10 +118,10 @@ function TicketForm() {
             />
           </Form.Group>
 
-          <Form.Group className='mt-3 mb-2'>
+          <Form.Group className='mt-3 mb-3'>
             <Form.Label>Email</Form.Label>
             <Form.Control
-              id = {`email${e}`}
+              id={`email${e.j}`}
               required
               type="text"
               placeholder="jose_fernando@gmail.com"
@@ -97,22 +130,26 @@ function TicketForm() {
               name="phone_number"
             />
           </Form.Group>
-          <br />
 
           <div className="text-center">
 
           </div>
+          </Card>
         </div>
+   
 
 
       )}
-      <Link href = 'order/new'>
-        
-        <Button onClick={() => listPassager()} type="submit" size="lg" className="mt-4 text-white">
-          Confirmar Passageiro
+      </Col>
+     
+      <Link href='order/new'>
+        <Button onClick={() => listPassager()} type="submit" size="lg" className="mt-3 mb-2 text-white">
+          Confirmar 
         </Button>
       </Link>
 
+      </Row>
+     
     </>
   )
 }
