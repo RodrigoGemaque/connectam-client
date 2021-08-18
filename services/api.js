@@ -1,13 +1,8 @@
-import axios from 'axios'
+import axios from 'axios';
 import Cookie from 'js-cookie';
 import Router from 'next/router';
 
-
-export default axios.create({
-  baseURL: 'http://localhost:3000'
-});
-
-
+const api = axios.create({ baseURL: "http://localhost:3000" });
 
 // adição da função para setar os headers de authẽnticação na api e nos cookies do browser, iremos utilizar ela no interceptor de request (tanto no fluxo normal quando no fluxo de erro).
 function setHeaders(res) {
@@ -74,3 +69,11 @@ api.interceptors.request.use(req => {
   }
   return req;
 })
+
+
+
+
+
+
+
+export default api;
