@@ -15,6 +15,7 @@ body {
 
 .card {
   margin: auto;
+  color: #000;
   margin-bottom: 50%;
   max-width: 100%;
   width: 80%;

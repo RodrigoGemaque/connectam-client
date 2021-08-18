@@ -8,22 +8,7 @@ import FormPassager from './FormPassager'
 export default function NewOrder() {
   return (
     <>
-      <Row className='justify-content-md-center'>
-
-        <Col md={{ span: 4 }}>
-          <Card className='p-5 mb-4'>
-            <h5  className= 'text-center'>Resumo da Compra</h5>
-            <Cart />
-          </Card>
-
-        
-        </Col>
-        <Col md={{span: 4}}>
-          <Card className='p-5 mb-4'>
-            <TicketForm/>
-          </Card>
-        </Col>
-      </Row>
+       <TicketForm/>
     </>
   )
 }

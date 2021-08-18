@@ -8,9 +8,7 @@ const PassagersForm = () => {
         <Col md={{ span: 4 }}>
 
 
-          <Card className='p-5 mb-4'>
             <TicketForm />
-          </Card>
         </Col>
       
       </Row>

@@ -13,6 +13,11 @@ import { PersistGate } from 'redux-persist/integration/react';
 import {store, persistor} from '../store'
 
 
+//toast
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure()
+
 const MyApp = ({ Component, pageProps }) => {
   return (
 

@@ -18,6 +18,7 @@ import {clearList} from '../../../../store/modules/admin/form_passager/reducer'
 function OrderForm() {
   const cartTravels = useSelector(state => state.cartTravels)
   const passagers = useSelector(state => state.form_passager)
+  const user_id = useSelector(state => state.auth.loggedUser.id)
   const [error, setError] = useState(null)
   const router = useRouter()
   const dispatch = useDispatch()
@@ -26,25 +27,53 @@ function OrderForm() {
   // if (cartTravels.length == 0){
   //   router.push('/travels')
   // }
-
-  let items_passagers =  passagers.map(p => ({
+  
+  let items_passagers =  passagers.map(p => (
+    
+    {
     'name': p.name,
     'cpf': p.cpf,
-    'email': p.email
+    'email': p.email,
+    'travel_id': p.travel_id
+    
   }))
-  
 
-  console.log(cartTravels)
+  const id_travel = cartTravels.filter((travel) =>{
+    let id= travel.id
+  })
+
+  // console.table(items_passagers)
+  // console.log(id_travel)
+  // console.log(cartTravels)
+
+  // const passagers1 = items_passagers.filter((passager) =>{
+  //   if(passager.travel_id === passager.travel_id){
+  //     console.group(passager.travel_id)
+  //   }else{
+  //     console.log('false')
+  //   }
+  // })
+  let table = []
+  let table2 = []
+
+  const passager_ = items_passagers.sort((a,b) => a.travel_id > b.travel_id ? table.push(a.travel_id) : table.push(a.travel_id))
+  // const passagers_ = items_passagers.sort((a,b) => a.travel_id > b.travel_id ? pasdd2.push(a.travel_id) : -1)
+  // console.table(passager_)
+  // console.table(pasdd2)
+  // console.log(table)
+
+
   
-  console.log(items_passagers)
+  
   const [order, setOrder] = useState({
-    'user_id': 1,    
+    'user_id': user_id,    
     line_items_attributes: cartTravels.map(t => ({ 
       'travel_id': t.id, 'quantity': t.quantity, tickets_attributes: items_passagers
     })),
 
   })
 
+  console.log(order)
 
   const submitOrder = async (e) => {
     e.preventDefault()
@@ -67,7 +96,6 @@ function OrderForm() {
   return (
 
     <Form onSubmit={e => submitOrder(e)}>
-
       <h4 className='fw-bold mb-5'>Finalizar pedido</h4>
    
       {cartTravels.length > 0 &&

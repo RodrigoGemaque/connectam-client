@@ -29,7 +29,7 @@ export default function AddProductModal(props) {
   const addProduct = (e) => {
     e.preventDefault();
 
-    const travel = { ...props.travel, ...{ 'quantity': quantity } }
+    const travel = { ...props.travel, ...{ quantity: parseInt(quantity) } }
     // console.log(travel.travel)
 
     dispatch(addCartTravel(travel))
