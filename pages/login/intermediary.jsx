@@ -2,7 +2,7 @@ import { Row, Col, Card } from "react-bootstrap"
 import Header from "../../components/shared/Header"
 // import styles from './styles.module.css'
 import LoginForm from '../../components/shared/LoginForm'
-import SignUpForm from "../../components/shared/SignUpForm"
+import SignUpFormIntermediary from "../../components/shared/SignUpForm/intermediary"
 
 const LoginPage = () => {
   return (
@@ -25,7 +25,7 @@ const LoginPage = () => {
 
         <Col md={{ span: 4 }}>
           <Card className='p-5 mb-3'>
-            <SignUpForm
+            <SignUpFormIntermediary
               titlePhrase="Criar nova conta"
               buttonPhrase="CRIAR" />
           </Card>

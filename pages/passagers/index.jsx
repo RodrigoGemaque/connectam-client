@@ -6,11 +6,8 @@ const PassagersForm = () => {
       <Row className='justify-content-md-center'>
 
         <Col md={{ span: 4 }}>
-
-
             <TicketForm />
         </Col>
-      
       </Row>
     </>
 

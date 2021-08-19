@@ -12,7 +12,7 @@ import { setLoggedUser } from '../../../store/modules/auth/reducer';
 
 
 
-const SignUpForm= ({ titlePhrase, buttonPhrase }) => {
+const SignUpIntermediary= ({ titlePhrase, buttonPhrase }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -30,7 +30,7 @@ const SignUpForm= ({ titlePhrase, buttonPhrase }) => {
     }
     try {
       await UsersService.signUp({ 
-        profile: 1,
+        profile: 2,
         name, 
         email, 
         password, 
@@ -43,7 +43,7 @@ const SignUpForm= ({ titlePhrase, buttonPhrase }) => {
         id: 0,
         name,
         email,
-        profile: 'client'
+        profile: 'intermediary'
       }))
 
       setName('');
@@ -113,4 +113,4 @@ const SignUpForm= ({ titlePhrase, buttonPhrase }) => {
   )
 }
 
-export default SignUpForm;
+export default SignUpIntermediary;

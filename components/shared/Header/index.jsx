@@ -42,11 +42,13 @@ const CustomerHeader = () => {
           <Col md={12}>
             <Row>
               <Col md={4}>
+              <Link href = '/login/owner'>
                 <FontAwesomeIcon
-                  onClick={() => setCartModalShow(true)}
+                  // onClick={() => setCartModalShow(true)}
                   icon={faShip}
                   color="var(--color-gray-light)"
                 />
+                </Link>
                 {/* <CartModal
                   show={cartModalShow}
                   onHide={() => setCartModalShow(false)}
@@ -54,11 +56,13 @@ const CustomerHeader = () => {
                 /> */}
               </Col>
               <Col md={4}>
+              <Link href = '/login/intermediary'>
                 <FontAwesomeIcon
                   onClick={() => setCartModalShow(true)}
                   icon={faPeopleArrows}
                   color="var(--color-gray-light)"
                 />
+                </Link>
               </Col>
               <Col md={4}>
                 <Link href = '/login'>
