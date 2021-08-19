@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import styles from './styles.module.css';
-import { InputGroup, FormControl, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faShip, faShoppingCart,faPeopleArrows, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faShip, faShoppingCart, faPeopleArrows, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import Logo from '../Logo';
+import Link from 'next/link'
 
 //Modal
 import CartModal from '../../StoreFront/CartModal';
@@ -60,10 +61,12 @@ const CustomerHeader = () => {
                 />
               </Col>
               <Col md={4}>
-                <FontAwesomeIcon
-                  icon={faUserCircle}
-                  color="var(--color-gray-light)"
-                />
+                <Link href = '/login'>
+                  <FontAwesomeIcon
+                    icon={faUserCircle}
+                    color="var(--color-gray-light)"
+                  />
+                </Link>
               </Col>
             </Row>
           </Col>
