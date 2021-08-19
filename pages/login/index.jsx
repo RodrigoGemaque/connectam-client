@@ -10,12 +10,11 @@ const LoginPage = () => {
     <>
       <Row className='justify-content-md-center mt-4'>
 
-        <Col md={{ span: 6 }}>
+        <Col md={{ span: 4 }}>
           <Card className='p-5 mb-3'>
             <LoginForm
               titlePhrase="Acessar minha Conta"
               buttonPhrase="Acessar"
-
             />
           </Card>
         </Col>
@@ -24,7 +23,7 @@ const LoginPage = () => {
 
       <Row className='justify-content-md-center mt-4'>
 
-        <Col md={{ span: 6 }}>
+        <Col md={{ span: 4 }}>
           <Card className='p-5 mb-3'>
             <SignUpForm
               titlePhrase="Criar nova conta"
