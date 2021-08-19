@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import styles from './styles.module.css';
-import { InputGroup, FormControl, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faShoppingCart, faUser, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faShip, faShoppingCart, faPeopleArrows, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import Logo from '../Logo';
+import Link from 'next/link'
 
 //Modal
 import CartModal from '../../StoreFront/CartModal';
-
 import { useRouter } from 'next/router';
 
 
@@ -18,21 +18,11 @@ import { useSelector } from 'react-redux';
 // import ProductShow from '../../../../dtos/ProductShow';
 
 const CustomerHeader = () => {
-  const [cartModalShow, setCartModalShow] = useState(false)
-
-
-  // const [search, setSearch] = useState('');
-  // const [showCartModal, setShowCartModal] = useState(false);
-
-  // const cartProducts: ProductShow[] = useSelector(state => state.cartProducts);
+  const [cartModalShow, setCartModalShow] = useState(false);
 
   const router = useRouter();
 
-  // const handleSearch = (): void => {
-  //   router.push(`
-  //     /Search?search=${search}&length=12&page=1&order=price&direction=asc
-  //   `);
-  // }
+
 
   // const handleUserRedirect = (): void => {
   //   router.push(
@@ -49,35 +39,39 @@ const CustomerHeader = () => {
 
       <Col md={3} className="mt-2 text-center">
         <Row>
-
-
           <Col md={12}>
             <Row>
-              <Col md={8}>
+              <Col md={4}>
+              <Link href = '/login/owner'>
                 <FontAwesomeIcon
-                  onClick={() => setCartModalShow(true)}
-                  icon={faShoppingCart}
+                  // onClick={() => setCartModalShow(true)}
+                  icon={faShip}
                   color="var(--color-gray-light)"
                 />
-                <CartModal
-
+                </Link>
+                {/* <CartModal
                   show={cartModalShow}
                   onHide={() => setCartModalShow(false)}
                   onShow={() => setCartModalShow(true)}
-                />
-
+                /> */}
               </Col>
               <Col md={4}>
+              <Link href = '/login/intermediary'>
                 <FontAwesomeIcon
-
-                  icon={faUserCircle}
+                  onClick={() => setCartModalShow(true)}
+                  icon={faPeopleArrows}
                   color="var(--color-gray-light)"
                 />
-
-
+                </Link>
               </Col>
-
-
+              <Col md={4}>
+                <Link href = '/login'>
+                  <FontAwesomeIcon
+                    icon={faUserCircle}
+                    color="var(--color-gray-light)"
+                  />
+                </Link>
+              </Col>
             </Row>
           </Col>
         </Row>

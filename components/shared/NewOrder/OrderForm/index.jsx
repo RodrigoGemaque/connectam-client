@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { useState } from 'react'
 import createOrder from '../../../../services/createOrder'
 
-import TicketForm from '../../NewTicket/TicketForm'
 
 import { useRouter } from 'next/router'
 
@@ -12,11 +11,14 @@ import { useRouter } from 'next/router'
 // redux
 import { useSelector, useDispatch } from 'react-redux'
 import { clearCartTravels } from '../../../../store/modules/storefront/cart/reducer'
-import createTicket from '../../../../services/createTicket'
+
+import {clearList} from '../../../../store/modules/admin/form_passager/reducer'
 
 
 function OrderForm() {
   const cartTravels = useSelector(state => state.cartTravels)
+  const passagers = useSelector(state => state.form_passager)
+  const user_id = useSelector(state => state.auth.loggedUser.id)
   const [error, setError] = useState(null)
   const router = useRouter()
   const dispatch = useDispatch()
@@ -25,55 +27,66 @@ function OrderForm() {
   // if (cartTravels.length == 0){
   //   router.push('/travels')
   // }
+  
+  let items_passagers =  passagers.map(p => (
+    
+    {
+    'name': p.name,
+    'cpf': p.cpf,
+    'email': p.email,
+    'travel_id': p.travel_id
+    
+  }))
 
+  const id_travel = cartTravels.filter((travel) =>{
+    let id= travel.id
+  })
+
+  // console.table(items_passagers)
+  // console.log(id_travel)
+  // console.log(cartTravels)
+
+  // const passagers1 = items_passagers.filter((passager) =>{
+  //   if(passager.travel_id === passager.travel_id){
+  //     console.group(passager.travel_id)
+  //   }else{
+  //     console.log('false')
+  //   }
+  // })
+  let table = []
+  let table2 = []
+
+  const passager_ = items_passagers.sort((a,b) => a.travel_id > b.travel_id ? table.push(a.travel_id) : table.push(a.travel_id))
+  // const passagers_ = items_passagers.sort((a,b) => a.travel_id > b.travel_id ? pasdd2.push(a.travel_id) : -1)
+  // console.table(passager_)
+  // console.table(pasdd2)
+  // console.log(table)
+
+
+  
+  
   const [order, setOrder] = useState({
-
-    line_items_attributes: cartTravels.map(t => (
-     
-      { 'travel_id': t.id, 'quantity': t.quantity }
-    )),
-
-  })
-
-
-
-  const [ticket, setTicket] = useState({
-
-    line_items_attributes: cartTravels.map(t => (
-      {
-        name: '',
-        cpf: "",
-        phone_number: '',
-      }
-    )),
+    'user_id': user_id,    
+    line_items_attributes: cartTravels.map(t => ({ 
+      'travel_id': t.id, 'quantity': t.quantity, tickets_attributes: items_passagers
+    })),
 
   })
 
-
-
-
-
-  // const updateOrderState = (e) => {
-  //   setOrder({ ...order, [e.target.name]: e.target.value })
-  // }
-
-  const updateTicketState = (e) => {
-    setOrder({ ...ticket, [e.target.name]: e.target.value })
-  }
-
+  console.log(order)
 
   const submitOrder = async (e) => {
     e.preventDefault()
   
     try {
-      await createOrder(order)
-      // await createTicket(ticket)
-      
+      await createOrder(order)      
       router.push('/order/success')
 
-      dispatch(clearCartTravels())
+      dispatch(clearCartTravels() )
+      dispatch(clearList())
     } catch (error) {
       setError(true)
+      console.log(error)
     }
   }
 
@@ -83,52 +96,8 @@ function OrderForm() {
   return (
 
     <Form onSubmit={e => submitOrder(e)}>
-
       <h4 className='fw-bold mb-5'>Finalizar pedido</h4>
-      {/* <Form.Group>
-        <Form.Label>Nome completo</Form.Label>
-        <Form.Control
-          required
-          type="text"
-          placeholder="Dennis Ritchie..."
-          onChange={updateTicketState}
-          value={ticket.name}
-          name="name"
-        />
-      </Form.Group>
-      <Form.Group className='mt-3'>
-        <Form.Label>CPF</Form.Label>
-        <Form.Control
-          required
-          type="text"
-          placeholder="000.000.000-00"
-          onChange={updateTicketState}
-          value={ticket.cpf}
-          name="cpf"
-        />
-      </Form.Group> */}
-      {/* <TicketForm/> */}
-      
-      {/* <Form.Group className='mt-3'>
-        <Form.Label>Contato</Form.Label>
-        <Form.Control
-          required
-          type="text"
-          placeholder="(00) 00000-0000"
-          onChange={updateTicketState}
-          value={ticket.phone_number}
-          name="phone_number"
-        />
-      </Form.Group> */}
-
-
-
-      {/* <div className="mt-5"> */}
-      {/* <p className='fw-bolder'>Entregar em:</p> */}
-      {/* <p><small>{address.street}, {address.number} {address.neighborhood}, {address.city}</small></p> */}
-      {/* </div> */}
-
-
+   
       {cartTravels.length > 0 &&
         <div className="text-center">
           <Button type="submit" size="lg" className="mt-4 text-white">
