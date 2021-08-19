@@ -56,7 +56,19 @@ const LoginForm = ({ titlePhrase, buttonPhrase }) => {
       };
       dispatch(setLoggedUser(user));
       toast.info('Login realizado com sucesso');
-      router.push(user.profile === 'admin' ? '/travels' : '/')
+      
+      if(user.profile === "client"){
+        router.push('/travels')
+      }else if(user.profile === "intermediary"){
+        router.push('/order/new')
+      }else if(user.profile === 'ship_owner'){
+        router.push('/order/success')
+
+      }
+
+
+      // router.push(user.profile === 'intermedi' ? '/travels' : '/')
+      // router.push(user.profile === 'admin' ? '/travels' : '/')
     }catch(err){
       toast.error('E-mail ou senha invalidos');
     }
@@ -67,7 +79,7 @@ const LoginForm = ({ titlePhrase, buttonPhrase }) => {
     <>
    <form onSubmit={handleSubmit}>
       <Row>
-        <Col lg={{ span: 6, offset: 3 }} md={{ span: 8, offset: 2 }}>
+        <Col lg={{ span: 12, offset: 0 }} md={{ span: 8, offset: 2 }}>
             <h4 className = 'text-center'>{titlePhrase}</h4>
 
 
