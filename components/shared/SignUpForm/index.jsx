@@ -61,7 +61,7 @@ const SignUpForm= ({ titlePhrase, buttonPhrase }) => {
   return (
     <div>
       <Row>
-        <Col lg={{ span: 6, offset: 3 }} md={{ span: 8, offset: 2 }}>
+        <Col lg={{ span: 12, offset: 0 }} md={{ span: 8, offset: 2 }}>
             <h4>{titlePhrase}</h4>
 
             <form onSubmit={handleSubmit}>
