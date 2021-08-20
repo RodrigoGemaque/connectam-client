@@ -1,5 +1,7 @@
 import TicketForm from '../../components/shared/NewTicket/TicketForm'
 import { Card, Row, Col } from 'react-bootstrap'
+import withAuth from '../../components/withAuth'
+
 const PassagersForm = () => {
   return (
     <>
@@ -14,4 +16,4 @@ const PassagersForm = () => {
   )
 }
 
-export default PassagersForm
+export default withAuth(PassagersForm);
