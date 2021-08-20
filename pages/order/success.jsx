@@ -1,7 +1,7 @@
 import { Row, Col, Card } from 'react-bootstrap';
 import Image from 'next/image';
-
-export default function Success() {
+import withAuthOwner from '../../components/withAuthOwner'
+const Success = () => {
   return(
     <Row className='mt-4 justify-content-md-center'>
       <Col md={4}>
@@ -25,3 +25,5 @@ export default function Success() {
     </Row>
   )
 }
+
+export default withAuthOwner(Success)

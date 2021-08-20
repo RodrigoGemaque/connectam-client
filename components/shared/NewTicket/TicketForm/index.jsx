@@ -75,8 +75,8 @@ function TicketForm() {
     test.push(i)
   }
 
-  console.log(test)
-  console.log(newArr)
+  // console.log(test)
+  // console.log(newArr)
 
 
   return (
