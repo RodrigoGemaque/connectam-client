@@ -53,7 +53,7 @@ const ListTravels = () => {
       return <Col><Alert variant='danger'> Erro ao Carregar</Alert></Col>
     else if (isLoading)
       return <Col><Spinner animation='border'></Spinner>  </Col>
-    else if (travels['travels'] == 0)
+    else if (travels['travels'] === 0)
       return <Col>Nenhuma viagem encontrada</Col>
     else
       return travels.travels.map((travel, i) => <Travel   {...travel} key={i} />)

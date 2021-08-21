@@ -12,7 +12,6 @@ const withAuth = (Component) => {
     const apiDataCookie = Cookie.get('@api-data');
     const apiData = apiDataCookie ? JSON.parse(apiDataCookie) : null;
 
-    console.log(apiData)
 
     if (!loggedUser ||
         !apiData ||
