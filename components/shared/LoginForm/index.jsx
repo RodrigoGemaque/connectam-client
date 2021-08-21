@@ -28,7 +28,9 @@ const LoginForm = ({ titlePhrase, buttonPhrase }) => {
 
   //redux get element
   const loggedUser = useSelector((state) => state.auth.loggedUser );
-
+  const cartTravels = useSelector(state => state.cartTravels)
+  
+  console.log(cartTravels[0])
   //useEffect para monitorar esse user
 
   useEffect(()=>{
@@ -62,7 +64,11 @@ const LoginForm = ({ titlePhrase, buttonPhrase }) => {
       }else if(user.profile === "intermediary"){
         router.push('/order/new')
       }else if(user.profile === 'ship_owner'){
-        router.push('/order/success')
+        if(cartTravels[0]){
+          router.push('/passagers')
+        }else{
+          router.push('/order/success')
+        }
 
       }
 

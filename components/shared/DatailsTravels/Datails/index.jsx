@@ -1,42 +1,44 @@
-import { Card, Col, Row, Button } from 'react-bootstrap'
+import { Col, Row, Button, Form } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShip, faAnchor, faClock, faShoppingCart, faBed, faCalendar, faUser, faUserPlus, faUserMinus, faMoneyBillAlt } from '@fortawesome/free-solid-svg-icons';
 import styles from './styles.module.css'
 
-import { useState } from 'react'
-
 
 // redux
 import { useSelector, useDispatch } from 'react-redux'
-import { addCartTravel, removeCartTravel, clearCartTravels } from '../../../../store/modules/storefront/cart/reducer'
+import { addCartTravel } from '../../../../store/modules/storefront/cart/reducer'
 
 
-import Link from 'next/link'
 import Image from 'next/image'
 
-import { keys } from '@material-ui/core/styles/createBreakpoints';
 import CartList from '../../../StoreFront/CartList';
 
+import { useState } from 'react';
 
 
 const Datails = (props) => {
 
 
-  console.log(props)
-  const [user, setUser] = useState(0)
-  const cartTravels = useSelector(state => state.cartTravels)
-
   const dispatch = useDispatch()
 
+  const [quantity, setQuantity] = useState(1)
 
-  // const total = () => cartTravels.reduce((acc, item) => parseFloat(acc + item.price), 0).toFixed(2)
+  const addProduct = (e) => {
+    e.preventDefault()
+
+    const travel = { ...props, ...{ quantity: parseInt(quantity) } }
+    dispatch(addCartTravel(travel))
+    setQuantity(1)
+
+  }
+
 
 
 
   return (
     <>
-      <Row>
-        <Col md={7}>
+      <Row className='ms-4'>
+        <Col md={6}>
           <Row className={styles.background}>
             <Row >
               {/* Barco imagem */}
@@ -51,7 +53,7 @@ const Datails = (props) => {
               </Col>
 
               <Col >
-                <Row className='mt-5'>
+                <Row className='mt-2'>
                   <h5 className='mb-1'>
                     <FontAwesomeIcon
                       icon={faShip}
@@ -67,11 +69,11 @@ const Datails = (props) => {
                       icon={faCalendar}
                       color="var(--color-gray-light)"
                     />
-                    <small > {(props.date)} </small>
+                    <small > Data: {(props.date)} </small>
                   </h5>
 
                 </Row>
-                <Row className='mt-4'>
+                {/* <Row className='mt-4'>
                   <h5>
                     <FontAwesomeIcon
                       icon={faClock}
@@ -79,14 +81,13 @@ const Datails = (props) => {
                     />
                     <small > 12:00 </small>
                   </h5>
-
-                </Row>
+                </Row> */}
 
               </Col>
 
 
               <Col >
-                <Row className='mt-5'>
+                <Row className='mt-2'>
                   <Col>
                     <h5 className='mb-1'>
                       <FontAwesomeIcon
@@ -103,25 +104,37 @@ const Datails = (props) => {
 
                   <Col>
                     <h6 className={styles.background2}>Adicionar passageiro </h6>
-                    <h4>
-                      <FontAwesomeIcon
-                        icon={faUserPlus}
-                        color="var(--color-gray-light)"
-                        onClick={() => dispatch(addCartTravel(props))}
-                      />
-                    </h4>
+                    <Form onSubmit={addProduct} className='d-flex'>
+                      <Form.Group>
+                        <Form.Control
+                          required
+                          type="number"
+                          placeholder="quantidade"
+                          min="1" step="1"
+
+                          onChange={(e) => setQuantity(e.target.value)}
+                        />
+                      </Form.Group>
+                      <Button variant="primary"
+                        type="submit"
+                        className="ms-2 text-whit ms-6"
+                      >
+                        Adicionar
+                      </Button>
+                    </Form>
+
                   </Col>
                 </Row>
-                <Link href = '/ticket/new'>
+                {/* <Link href = '/ticket/new'>
                   <Button>Continuar</Button>
-                </Link>
+                </Link> */}
               </Col>
 
             </Row>
           </Row>
         </Col>
         <Col md={4} className={styles.container}>
-          <CartList />
+            <CartList />
         </Col>
       </Row>
 
