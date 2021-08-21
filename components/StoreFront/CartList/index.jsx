@@ -1,3 +1,4 @@
+
 import { Row, Col, Button } from 'react-bootstrap'
 import styles from './styles.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -33,7 +34,7 @@ const CartList = () => {
 
         <Row className={styles.background}>
           <Row>
-            <h5 className='fw-bold text-center mb-0'>Resumo da Compra </h5>
+            <h5 className='fw-bold text-center mb-0'>Detalhes do pedido </h5>
             <h5>
               <div>
                 {cartTravels?.map((travel, index) =>

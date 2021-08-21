@@ -17,13 +17,12 @@ import AddProductModal from '../../../StoreFront/AddProduct';
 
 const Travel = (props) => {
   //Modal
-  const [travelSelect ,setTraveSelected] = useState(null);
-
+  // const [travelSelect ,setTraveSelected] = useState(null);
   //Modal
 
   const router = Router;
 
-  function travelId(props){
+  function travelIdRedirect(props){
     console.log(props)
     router.push(`/travels/${props.id}`)
     // router.push(`/travels/${props.id}`)
@@ -37,7 +36,7 @@ const Travel = (props) => {
     <Col lg={11} sm={12}  className="mb-3">
       {/* <Link href={`/travels/${props.id}`}> */}
 
-        <Card body className='clickable_effect' onClick = {() => travelId(props)}>
+        <Card body className='clickable_effect' onClick = {() => travelIdRedirect(props)}>
           <Row>
             <Col lg={2} md={4} xs={12} className='text-center ' >
               <Image
@@ -49,7 +48,6 @@ const Travel = (props) => {
                 layout="responsive"
               />
             </Col>
-            &nbsp;
             {/* barco e data */}
             <Col md={6, { offset: 1 }} xs={12} className='mt-4'>
               <Row>
@@ -59,11 +57,11 @@ const Travel = (props) => {
                     icon={faShip}
                     color="var(--color-gray-light)"
                   />
-                  &nbsp;Embarcacao : {props.ship}
+                  &nbsp;Embarcação : {props.ship}
                 </p>
               </Row>
 
-              <Row className='mt-2'>
+              <Row className='mt-4'>
                 <h6 className='fw-bold'>
 
                   <FontAwesomeIcon
@@ -73,17 +71,17 @@ const Travel = (props) => {
                   &nbsp;Viagem : {props.route_info.departure} / {props.route_info.arrival}
                 </h6>
               </Row>
-              <Row className='mt-2 '>
+              <Row className='mt-5 '>
                 <h6 className='fw-bold '>
 
                   <FontAwesomeIcon
                     icon={faCalendar}
                     color="var(--color-gray-light)"
                   />
-                  &nbsp;<span>{props.date}</span>
+                  &nbsp;<span>Data : {props.date}</span>
                 </h6>
               </Row>
-              <Row className='mt-4 '>
+              {/* <Row className='mt-4 '>
                 <h6 className='fw-bold text-align-rigth'>
 
                   <FontAwesomeIcon
@@ -92,21 +90,21 @@ const Travel = (props) => {
                   />
                   &nbsp;Horario:
                   {/* {props.time} */}
-                </h6>
-              </Row>
+                {/* </h6> */}
+              {/* </Row> */} 
 
             </Col>
             <Col md={3} className='mt-4'>
-              <Row>
+              {/* <Row>
                 <h6 className='fw-bold text-align-rigth'>
 
                   &nbsp;Acomodacao: <small> Rede</small>
                 </h6>
 
-              </Row>
+              </Row> */}
               <Row className=' mt-5'>
                 <Col>
-                  <h5>valor</h5>
+                  <h5 className='fw-bold  mb-0'>Valor</h5>
 
                 </Col>
 
@@ -126,7 +124,7 @@ const Travel = (props) => {
 
               </Row>
               <Row className='mt-0'>
-                <h2 styles={styles.price_container}>
+                <h2 className = "className='fw-bold " >
                   <span>{toCurrency(props.price)}</span>
                 </h2>
               </Row>
