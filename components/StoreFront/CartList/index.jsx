@@ -5,7 +5,7 @@ import { faMoneyBillAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 
 import Link from 'next/link'
-
+import toCurrency from '../../../services/toCurrency';
 // redux
 import { useSelector, useDispatch } from 'react-redux'
 import { removeCartTravel, clearCartTravels } from '../../../store/modules/storefront/cart/reducer'
@@ -15,11 +15,16 @@ import { removeCartTravel, clearCartTravels } from '../../../store/modules/store
 const CartList = () => {
   const cartTravels = useSelector(state => state.cartTravels)
   const dispatch = useDispatch()
-  const total = () => cartTravels.reduce((acc, item) => parseFloat(acc + item.price), 0).toFixed(2)
+  const total = () => cartTravels.reduce(
+    (a, b) => a + (parseFloat(b['price']) * parseFloat(b['quantity']) || 0), 0
+  );
 
   const handleRemove = (index) => {
     dispatch(removeCartTravel(index));
   }
+
+
+ 
 
   return (
     <>
@@ -28,38 +33,45 @@ const CartList = () => {
 
         <Row className={styles.background}>
           <Row>
-            <span className='fw-bold'>Passagem: </span>
+            <h5 className='fw-bold text-center mb-0'>Resumo da Compra </h5>
             <h5>
               <div>
                 {cartTravels?.map((travel, index) =>
-                    <Col key = {index}>
-                      <Row>
-
-                        <span>
-                          Viagem id: {travel.id} &nbsp;
-                          <FontAwesomeIcon
-                            icon={faTrash}
-                            key={index}
-
-                            color="var(--color-gray-light)"
-                            onClick={() => handleRemove(index)}
-                          />
-                        </span>
-                      </Row>
-                    </Col>
+                  <Col key={index}>
+                    <Row className = "mt-4">
+                      <span>Viagem : {travel.route_info.departure} x {travel.route_info.arrival} </span>
+                      <span>
+                        Quantidade de bilhetes : {travel.quantity}  &nbsp;
+                        <FontAwesomeIcon
+                        className = "ms-5"
+                          icon={faTrash}
+                          key={index}
+                          color="var(--color-gray-light)"
+                          onClick={() => handleRemove(index)}
+                        />
+                      </span>
+                    </Row>
+                  </Col>
 
                 )}
               </div>
             </h5>
           </Row>
-
-
-
-
           <Col >
             <Row className='mt-4'>
-
-              <Col className={styles.container}>
+              <Col> <h4>
+                <small className='fw-bold'> Valor Total </small>
+              </h4></Col>
+              <Col> <h3>
+                <span>
+                  {
+                    toCurrency(total())
+                  }
+                </span>
+                &nbsp;
+               
+              </h3></Col>
+              {/* <Col className={styles.container}>
                 <Row>
                   <h4>
                     <small className='fw-bold'> Valor Total </small>
@@ -81,12 +93,16 @@ const CartList = () => {
                     />
                   </h3>
                 </Row>
-              </Col>
+              </Col> */}
+             
+              <Link href="/passagers">
+                <Button className='text-center'>Continuar</Button>
+
+              </Link>
             </Row>
-            
+
 
           </Col>
-
         </Row>
 
       </Col>
