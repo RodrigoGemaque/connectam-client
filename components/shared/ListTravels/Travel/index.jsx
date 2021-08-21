@@ -1,14 +1,14 @@
+//css
 import styles from './styles.module.css';
 import { Row, Col, Card, Image } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShip, faAnchor, faClock, faShoppingCart, faBed, faCalendar, faMoneyBill } from '@fortawesome/free-solid-svg-icons';
-//css
 
 //end css
+import toCurrency from '../../../../services/toCurrency';
 
-import { addCartTravel } from '../../../../store/modules/storefront/cart/reducer'
-import { useSelector, useDispatch } from 'react-redux'
-import Link from 'next/link'
+// import Link from 'next/link'
+import Router from 'next/router'
 
 //modal Code
 import {useState} from 'react'
@@ -17,31 +17,27 @@ import AddProductModal from '../../../StoreFront/AddProduct';
 
 const Travel = (props) => {
   //Modal
-  const [travelSelect ,setTraveSelected] = useState(null)
+  const [travelSelect ,setTraveSelected] = useState(null);
 
   //Modal
 
+  const router = Router;
 
-  const cartTravels = useSelector(state => state.cartTravels)
-  const dispatch = useDispatch();
-
-
-  const checkTravel = () => {
-    if(cartTravels.length < 1){
-      dispatch(addCartTravel(props))
-    }
+  function travelId(props){
+    console.log(props)
+    router.push(`/travels/${props.id}`)
+    // router.push(`/travels/${props.id}`)
   }
-
 
   return (
 
 
 
 
-    <Col lg={12} sm={12} xs={12} className="mb-3">
+    <Col lg={11} sm={12}  className="mb-3">
       {/* <Link href={`/travels/${props.id}`}> */}
 
-        <Card body className='clickable_effect' onClick = {() => setTraveSelected(props)}>
+        <Card body className='clickable_effect' onClick = {() => travelId(props)}>
           <Row>
             <Col lg={2} md={4} xs={12} className='text-center ' >
               <Image
@@ -131,7 +127,7 @@ const Travel = (props) => {
               </Row>
               <Row className='mt-0'>
                 <h2 styles={styles.price_container}>
-                  <span>R$ {props.price}.00</span>
+                  <span>{toCurrency(props.price)}</span>
                 </h2>
               </Row>
 
@@ -141,11 +137,11 @@ const Travel = (props) => {
         </Card>
       {/* </Link> */}
 
-      <AddProductModal
+      {/* <AddProductModal
         show = {travelSelect != null}
         onHide = {() => setTraveSelected(null)}
         travel = {props}
-      />
+      /> */}
     </Col>
 
 

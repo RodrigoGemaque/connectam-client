@@ -18,10 +18,11 @@ const DatailTravels = () => {
     
 
   return (
-    <Container>
-      <br/>
-      <Datails {...travel}/>   
-    </Container>
+    <>
+    <br/>
+    <Datails {...travel}/>   
+    
+    </>
   )
 }
 
