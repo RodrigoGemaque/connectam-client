@@ -19,7 +19,6 @@ const Travel = (props) => {
   //Modal
   // const [travelSelect ,setTraveSelected] = useState(null);
   //Modal
-
   const router = Router;
 
   function travelIdRedirect(props){
@@ -49,7 +48,7 @@ const Travel = (props) => {
               />
             </Col>
             {/* barco e data */}
-            <Col md={6, { offset: 1 }} xs={12} className='mt-4'>
+            <Col md={6, { offset: 1 }} xs={12} className='mt-3'>
               <Row>
                 <p className='fw-bold'>
 
@@ -61,7 +60,7 @@ const Travel = (props) => {
                 </p>
               </Row>
 
-              <Row className='mt-4'>
+              <Row className='mt-3'>
                 <h6 className='fw-bold'>
 
                   <FontAwesomeIcon
@@ -71,7 +70,7 @@ const Travel = (props) => {
                   &nbsp;Viagem : {props.route_info.departure} / {props.route_info.arrival}
                 </h6>
               </Row>
-              <Row className='mt-5 '>
+              <Row className='mt-3 '>
                 <h6 className='fw-bold '>
 
                   <FontAwesomeIcon
@@ -81,17 +80,16 @@ const Travel = (props) => {
                   &nbsp;<span>Data : {props.date}</span>
                 </h6>
               </Row>
-              {/* <Row className='mt-4 '>
+              <Row className='mt-3 '>
                 <h6 className='fw-bold text-align-rigth'>
 
                   <FontAwesomeIcon
                     icon={faClock}
                     color="var(--color-gray-light)"
                   />
-                  &nbsp;Horario:
-                  {/* {props.time} */}
-                {/* </h6> */}
-              {/* </Row> */} 
+                  &nbsp;<span>Hora de Saída : {props.hour}</span>
+                </h6>
+              </Row> 
 
             </Col>
             <Col md={3} className='mt-4'>
@@ -104,7 +102,7 @@ const Travel = (props) => {
               </Row> */}
               <Row className=' mt-5'>
                 <Col>
-                  <h5 className='fw-bold  mb-0'>Valor</h5>
+                  <h5 className='fw-bold  mb-0'>Valor :</h5>
 
                 </Col>
 
