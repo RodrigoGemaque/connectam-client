@@ -20,6 +20,10 @@ const UsersService = {
       email,
       password
     }),
+
+  signOut: () => {
+    api.delete('auth/user/sign_out')
+  }
 }
 
 export default UsersService;
