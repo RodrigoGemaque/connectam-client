@@ -34,7 +34,8 @@ function OrderForm() {
     'name': p.name,
     'cpf': p.cpf,
     'email': p.email,
-    'travel_id': p.travel_id
+    'travel_id': p.travel_id,
+    'ship_id': p.ship_id
     
   }))
 
