@@ -14,7 +14,7 @@
   color: white;
 }
 
-.background svg:hover {
+/* .background svg:hover {
   color: var(--color-hover);
 }
 
@@ -24,7 +24,7 @@
 
 .hidden {
   display: none;
-}
+} */
 
 .cart_container {
   max-width: 72px;

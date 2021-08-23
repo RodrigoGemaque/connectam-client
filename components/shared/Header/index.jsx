@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import styles from './styles.module.css';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShip, faShoppingCart, faPeopleArrows, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import Logo from '../Logo';
 import Link from 'next/link'
+import UsersService from '../../../services/user';
+import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearLoggedUser } from '../../../store/modules/auth/reducer';
 
 //Modal
 import CartModal from '../../StoreFront/CartModal';
@@ -14,13 +18,31 @@ import { useRouter } from 'next/router';
 // import Badge from '../../Badge';
 // import CartModal from '../../../Storefront/CartModal';
 
-import { useSelector } from 'react-redux';
 // import ProductShow from '../../../../dtos/ProductShow';
 
 const CustomerHeader = () => {
   const [cartModalShow, setCartModalShow] = useState(false);
 
   const router = useRouter();
+  const loggedUser = useSelector((state) => state.auth.loggedUser );
+  const dispatch = useDispatch()
+  const handleLogout = async (evt)=> {
+    evt.preventDefault();
+
+    try{
+      const response = await UsersService.signOut();
+      dispatch(clearLoggedUser());
+      toast.info('Logout realizado com sucesso');
+      router.push('/login')
+
+      // router.push(user.profile === 'intermedi' ? '/travels' : '/')
+      // router.push(user.profile === 'admin' ? '/travels' : '/')
+    }catch(err){
+      toast.error('Erro ao encerrar a sessão');
+      console.log(err)
+    }
+  }
+
 
 
 
@@ -32,50 +54,80 @@ const CustomerHeader = () => {
 
   return (
     <Row className={styles.background}>
-      <Col md={9} className="mt-2">
+      <Col md={6}>
         {/* Posicionamento temporario */}
         <Logo />
       </Col>
-
-      <Col md={3} className="mt-2 text-center">
-        <Row>
-          <Col md={12}>
-            <Row>
-              <Col md={4}>
-              <Link href = '/login/owner'>
-                <FontAwesomeIcon
-                  // onClick={() => setCartModalShow(true)}
-                  icon={faShip}
-                  color="var(--color-gray-light)"
-                />
-                </Link>
-                {/* <CartModal
-                  show={cartModalShow}
-                  onHide={() => setCartModalShow(false)}
-                  onShow={() => setCartModalShow(true)}
-                /> */}
-              </Col>
-              <Col md={4}>
-              <Link href = '/login/intermediary'>
-                <FontAwesomeIcon
-                  onClick={() => setCartModalShow(true)}
-                  icon={faPeopleArrows}
-                  color="var(--color-gray-light)"
-                />
-                </Link>
-              </Col>
-              <Col md={4}>
-                <Link href = '/login'>
-                  <FontAwesomeIcon
-                    icon={faUserCircle}
-                    color="var(--color-gray-light)"
-                  />
-                </Link>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
+      <Col >
+      <Navbar >
+          <Navbar.Toggle />
+          <FontAwesomeIcon
+            icon={faShip}
+          />
+            <Nav >
+              <NavDropdown >
+                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+              </NavDropdown>
+            </Nav>
+        </Navbar>
       </Col>
+      <Col >
+      <Navbar >
+          <Navbar.Toggle />
+          <FontAwesomeIcon
+            icon={faPeopleArrows}
+          />
+            <Nav >
+              <NavDropdown >
+                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+              </NavDropdown>
+            </Nav>
+        </Navbar>
+      </Col>
+      <Col >
+        <Navbar
+         
+        >
+          <Navbar.Toggle />
+          <FontAwesomeIcon
+            icon={faUserCircle}
+          />
+            <Nav >
+              <NavDropdown >
+                <Link href = '/login'>
+                  <NavDropdown.Item href="#action/3.1">Login</NavDropdown.Item>
+                </Link>
+
+                {loggedUser ? 
+                <NavDropdown.Item 
+                  onClick = {(evt) => handleLogout(evt)}
+                >SignOut
+                </NavDropdown.Item> 
+                
+                : ''
+
+
+                }
+                
+                {/* <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item> */}
+              </NavDropdown>
+            </Nav>
+        </Navbar>
+
+      </Col>
+
+
     </Row>
   )
 }
