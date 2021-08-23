@@ -42,7 +42,7 @@ const Datails = (props) => {
           <Row className={styles.background}>
             <Row >
               {/* Barco imagem */}
-              <Col lg={3} md={6} sm={12} className='text-center'>
+              <Col lg={4} md={6} sm={12} className='text-center'>
                 <Image
                   src={props.image_url}
                   width={300}
@@ -73,15 +73,15 @@ const Datails = (props) => {
                   </h5>
 
                 </Row>
-                {/* <Row className='mt-4'>
+                <Row className='mt-4'>
                   <h5>
                     <FontAwesomeIcon
                       icon={faClock}
                       color="var(--color-gray-light)"
                     />
-                    <small > 12:00 </small>
+                    <small > Hora de Saída: {(props.hour)} </small>
                   </h5>
-                </Row> */}
+                </Row>
 
               </Col>
 

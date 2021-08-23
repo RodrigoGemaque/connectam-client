@@ -23,7 +23,6 @@ function TicketForm() {
 
 
   
-  
 
   //gerar um array com todas as posicoes da soma da quantidade com seu respctivo id
     let quantity1 = []  
@@ -32,12 +31,16 @@ function TicketForm() {
       if(travel.quantity > 1){
         for(i = 1; i <= travel.quantity; i++){
           let j = i
-          quantity1.push({ travel_id: travel.id, quantity: 1, j}) 
+          let hour = new Date(travel.hour)
+          let hours = hour.getUTCHours()
+          quantity1.push({ travel_id: travel.id, quantity: 1,ship_id: travel.ship_id , hour: hours,j}) 
         }
       }else if(travel.quantity == 1){
         for(i = 1; i <= travel.quantity; i++){
           let j = Math.random().toFixed(2)
-          quantity1.push({ travel_id: travel.id, quantity: 1, j}) 
+          let hour = new Date(travel.hour)
+          let hours = hour.getUTCHours()
+          quantity1.push({ travel_id: travel.id, quantity: 1,ship_id: travel.ship_id,hour: hours, j}) 
         }
         
       }
@@ -47,7 +50,6 @@ function TicketForm() {
     // console.log( quantity1)
     // console.log(quantity2)
     const newArr = quantity1.concat(quantity2)
-    // console.log(newArr)
 
   //Estados do form
 
@@ -59,12 +61,16 @@ function TicketForm() {
       let cpf = document.getElementById(`cpf${e.j}`).value
       let email = document.getElementById(`email${e.j}`).value
       let travel_id = e.travel_id
+      let ship_id = e.ship_id
+      let hour = e.hour
+
       let passager = {
         name: name,
         cpf: cpf,
         email: email,
-        travel_id: travel_id
-       
+        travel_id: travel_id,
+        ship_id: ship_id,
+        hour: hour
       }
       dispatch(addPassager(passager))
     })
@@ -92,6 +98,7 @@ function TicketForm() {
       {newArr?.map((e) =>
         <div className="mb-3 mt-3" key={e.j}>
           <Card className='p-3 mb-3'>
+            
           <h4>viagem id {e.travel_id}</h4>
           <Form.Group>
             <Form.Label>Nome completo</Form.Label>
