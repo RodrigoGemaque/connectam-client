@@ -1,6 +1,5 @@
 import { Row, Col, FormControl, Button, InputGroup, Form, Alert } from 'react-bootstrap'
 import ContainerComponent from '../../ContainerComponent'
-import Link from 'next/link'
 import { useState } from 'react'
 import createOrder from '../../../../services/createOrder'
 
@@ -43,17 +42,7 @@ function OrderForm() {
     let id= travel.id
   })
 
-  // console.table(items_passagers)
-  // console.log(id_travel)
-  // console.log(cartTravels)
 
-  // const passagers1 = items_passagers.filter((passager) =>{
-  //   if(passager.travel_id === passager.travel_id){
-  //     console.group(passager.travel_id)
-  //   }else{
-  //     console.log('false')
-  //   }
-  // })
   let table = []
   let table2 = []
 
@@ -77,8 +66,7 @@ function OrderForm() {
   console.log(order)
 
   const submitOrder = async (e) => {
-    e.preventDefault()
-  
+    e.preventDefault()  
     try {
       await createOrder(order)      
       router.push('/order/success')
@@ -97,12 +85,12 @@ function OrderForm() {
   return (
 
     <Form onSubmit={e => submitOrder(e)}>
-      <h4 className='fw-bold mb-5'>Finalizar pedido</h4>
+      <h4 className='fw-bold text-center mb-5'>Finalizar pedido</h4>
    
       {cartTravels.length > 0 &&
         <div className="text-center">
           <Button type="submit" size="lg" className="mt-4 text-white">
-            Finalizar Pedido
+            Confirmar
           </Button>
         </div>
       }
@@ -133,16 +121,17 @@ export default OrderForm
 
 
 
+  // console.table(items_passagers)
+  // console.log(id_travel)
+  // console.log(cartTravels)
 
-
-
-
-
-
-
-
-
-
+  // const passagers1 = items_passagers.filter((passager) =>{
+  //   if(passager.travel_id === passager.travel_id){
+  //     console.group(passager.travel_id)
+  //   }else{
+  //     console.log('false')
+  //   }
+  // })
 
 
 

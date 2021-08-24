@@ -1,28 +1,16 @@
-// import { useRecoilState } from 'recoil';
-// import cartState from '../../store/atoms/cartAtom';
-
 import { Row, Col, Button } from 'react-bootstrap';
 import toCurrency from '../../../services/toCurrency';
 
-
-
-
 //redux
-import { addCartTravel, removeCartTravel } from '../../../store/modules/storefront/cart/reducer'
+import { removeCartTravel } from '../../../store/modules/storefront/cart/reducer'
 import { useSelector, useDispatch } from 'react-redux'
-
 
 export default function Cart(props) {
 
-
-  // //Redux
-
+  //Redux
   const cartTravels = useSelector(state => state.cartTravels)
   const dispatch = useDispatch();
-  // //Redux
-
-
-  // const [cart, setCart] = useRecoilState(cartState)
+  //Redux
 
   const total = () => cartTravels.reduce(
     (a, b) => a + (parseFloat(b['price']) * parseFloat(b['quantity']) || 0), 0
@@ -32,13 +20,6 @@ export default function Cart(props) {
   // const total = () => cart.restaurant.delivery_tax + subTotal();
   if (cartTravels.length <= 0)
     return <p>Carrinho vazio</p>;
-
-  // const removeProduct = (travel) => {
-  //   const new_travels = cartTravels.filter((t) => t.id != travel.id);
-  //   dispatch(removeCartTravel([new_travels]))
-  //   // setCart({ restaurant: { ...cart.restaurant }, products: new_products })
-  // }
-
   const handleRemove = (index) => {
     dispatch(removeCartTravel(index));
   }
@@ -52,7 +33,7 @@ export default function Cart(props) {
         <div key={travel.id} className="mb-4" key={i}>
           <Row>
             <Col md={8} xs={8}>
-              <small className='fw-bolder'>{travel.quantity} x Bilhetes {travel.ship}</small>
+              <small className='fw-bolder'>{travel.quantity} x Bilhete {travel.ship}</small>
             </Col>
             <Col md={4} xs={4} className="text-right">
               <small >
@@ -62,7 +43,7 @@ export default function Cart(props) {
           </Row>
           <Row className="mt-2">
             <Col md={8} xs={8}>
-              <p><small>Data {travel.route_info.departure}</small></p>
+              <p><small>Data : {travel.date}</small></p>
             </Col>
             <Col md={4} xs={4} className="text-right">
               <Button
@@ -77,24 +58,8 @@ export default function Cart(props) {
           </Row>
         </div>
       )}
-      <hr />
-      <Row className="mt-4">
-        <Col md={8} xs={8}>
-          <p>Subototal</p>
-        </Col>
-        <Col md={4} xs={4} className="text-right">
-          {/* <p>{toCurrency(subTotal())}</p> */}
-        </Col>
-      </Row>
-      <Row className="mt-n2">
-        <Col md={8} xs={8}>
-          <p>Taxa de entrega</p>
-        </Col>
-        <Col md={4} xs={4} className="text-right">
-          {/* <p>{toCurrency(cartTravels.travel.delivery_tax)}</p> */}
-        </Col>
-        <hr />
-      </Row>
+    
+     <hr />
       <Row className="mb-4">
         <Col md={8} xs={8}>
           <p className='fw-bolder'>Total</p>
@@ -106,3 +71,39 @@ export default function Cart(props) {
     </>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// <Row className="mt-4">
+// <Col md={8} xs={8}>
+//   <p>Subototal</p>
+// </Col>
+// <Col md={4} xs={4} className="text-right">
+//   {/* <p>{toCurrency(subTotal())}</p> */}
+// </Col>
+// </Row> 
+// <Row className="mt-n2">
+//   <Col md={8} xs={8}>
+//   <p>Taxa de entrega</p>
+// </Col> 
+// <Col md={4} xs={4} className="text-right">
+//   {/* <p>{toCurrency(cartTravels.travel.delivery_tax)}</p> */}
+// </Col>
+// <hr />
+// </Row>
