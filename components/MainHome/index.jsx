@@ -1,4 +1,4 @@
-import { Row, Col, Form, } from 'react-bootstrap'
+import { Row, Col, Form,Button } from 'react-bootstrap'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import useSWR from 'swr'
@@ -6,7 +6,7 @@ import useSWR from 'swr'
 import Link from 'next/link'
 //redux
 import { useDispatch, useSelector } from 'react-redux'
-import { getArrival, getDeparture, getDate } from '../../store/modules/admin/travels/travelsSlice'
+import { getArrival, getDeparture, getDate, clearSeach } from '../../store/modules/admin/travels/travelsSlice'
 
 
 import TravelsService from '../../services/travels'
@@ -17,7 +17,7 @@ const MainHome = () => {
   const { data } = useSWR(defaultUrl, TravelsService.index)
 
 
-  // console.log(data)
+  console.log(data)
 
   // const chegada = data.map(t => t.name)
   // console.log(  chegada)  
@@ -45,8 +45,18 @@ const MainHome = () => {
     }
   }
 
+  function getCity2() {
+    if (data) {
+      return data.map((t, i) => t.name != departure ? <option key={i}>{  t.name}</option> : '')
+    }
+  }
 
 
+  const clearCity = (evt) => {
+    evt.preventDefault()
+
+    dispatch(clearSeach())
+  }
 
 
 
@@ -104,7 +114,7 @@ const MainHome = () => {
                         >
 
                           <option >Destino</option>
-                          {getCity()}
+                          {getCity2()}
                         </Form.Control>
                         <span className="select-arrow"></span>
                       </div>
@@ -152,7 +162,11 @@ const MainHome = () => {
                   </div>
                 </Form>
 
-
+                <div className="form-btn">
+                    <Button onClick = {(evt) => {clearCity(evt)} }>
+                      Limpar
+                    </Button>
+                  </div>
               </div>
             </div>
           </Row>

@@ -21,10 +21,16 @@ const travelSlice = createSlice({
     },
     getDate: (state, action) => {
       state.date = action.payload
+    },
+    clearSeach: (state) =>{
+     state.departure = '',
+     state.arrival = '',
+     state.date = ''
+      
     }
   }
 })
 
 
-export const {getDeparture, getArrival, getDate} = travelSlice.actions
+export const {getDeparture, getArrival, getDate, clearSeach} = travelSlice.actions
 export default travelSlice.reducer
