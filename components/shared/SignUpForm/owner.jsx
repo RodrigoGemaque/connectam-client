@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 
 //Service
-import UsersService from '../../../services/user';
+import OwnerService from '../../../services/owner';
 
 // redux
 import { useDispatch } from 'react-redux';
@@ -29,8 +29,8 @@ const SignUpFormOwner= ({ titlePhrase, buttonPhrase }) => {
       return;
     }
     try {
-      await UsersService.signUp({ 
-        profile: 3,
+      await OwnerService.signUp({ 
+        profile: 0,
         name, 
         email, 
         password, 
