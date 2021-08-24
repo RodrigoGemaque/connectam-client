@@ -47,7 +47,11 @@ const CalendarPersonalized = () => {
       return null
     } else return data.map((t, i) => <option key={i}>{t.name}</option>)
   }
-
+  function getCity2() {
+    if (data) {
+      return data.map((t, i) => t.name != departure ? <option key={i}>{  t.name}</option> : '')
+    }
+  }
 
 
 
@@ -95,7 +99,7 @@ const CalendarPersonalized = () => {
                   >
 
                     <option >Destino</option>
-                    {getCity()}
+                    {getCity2()}
                   </Form.Control>
                   <span className="select-arrow"></span>
                 </div>
