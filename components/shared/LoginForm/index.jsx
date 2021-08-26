@@ -70,6 +70,8 @@ const LoginForm = ({ titlePhrase, buttonPhrase }) => {
           router.push('/order/success')
         }
 
+      }else if( user.profile === "admin"){
+        router.push('/Admin')
       }
 
 
