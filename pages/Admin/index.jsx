@@ -1,6 +1,6 @@
 import React from 'react';
 import AdminComponent from '../../components/shared/AdminComponent';
-import withAuthAdmin from '../../components/WithAuthAdmin';
+import withAuthAdmin from '../../components/withAuthAdmin';
 
 
 const Home = () => {

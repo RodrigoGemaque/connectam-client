@@ -47,15 +47,6 @@ const AdminHeader = () => {
           </a>
         </Link>
 
-        <Link href="/Admin/Intermediaries/List">
-          <a>
-            <FontAwesomeIcon 
-              icon={faPeopleArrows} 
-              color="var(--color-gray-light)" 
-              className={`me-3 ${router.pathname === '/Admin/Intermediaries/List' ? styles.active : ''}`}
-            />
-          </a>
-        </Link>
         
 
         <Link href="/Admin/Ships/List">

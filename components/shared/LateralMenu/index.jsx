@@ -36,21 +36,15 @@ const LateralMenu = () => {
           </a>
         </Link>
 
-        <Link href="/Admin/Owner/List">
-          <a className={`${router.pathname === '/Admin/Owner/List' ? styles.active : ''}`}>
+        <Link href="/Admin/Owners/List">
+          <a className={`${router.pathname === '/Admin/Owners/List' ? styles.active : ''}`}>
             <FontAwesomeIcon icon={faUserTie} color="var(--color-gray-light)" className="me-3" />
             Donos de Embarcação
             <hr />
           </a>
         </Link>
 
-        <Link href="/Admin/Intermediaries/List">
-          <a className={`${router.pathname === '/Admin/Intermediaries/List' ? styles.active : ''}`}>
-            <FontAwesomeIcon icon={faPeopleArrows} color="var(--color-gray-light)" className="me-3" />
-            Intermediários
-            <hr />
-          </a>
-        </Link>
+       
 
         <Link href="/Admin/Ships/List">
           <a className={`${router.pathname === '/Admin/Ships/List' ? styles.active : ''}`}>
