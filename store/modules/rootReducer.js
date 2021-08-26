@@ -7,6 +7,7 @@ import auth from './auth/reducer'
 
 import ship from './admin/ship/reducer'
 import user from './admin/user/reducer'
+import owner_ship from './admin/owner_ship/reducer'
 
 export default combineReducers({
   travel,
@@ -16,5 +17,6 @@ export default combineReducers({
 
   ship,
   user,
+  owner_ship,
   
 });
