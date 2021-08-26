@@ -1,16 +1,15 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,100&family=Raleway:wght@100&display=swap');
-:root {
-  --color-primary: #10163A;
-  --color-secondary: #212744;
-  --color-background: #262C49;
-  --color-gray-light: #7DA1BC;
-  --color-blue-light: #00CFFF;
-  --color-white: #FFFFFF;
-  --color-hover: #055bd8;
-  --color-active: #71efff;
-}
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap');
 
+:root {
+    --color-primary: #10163A;
+    --color-secondary: #212744;
+    --color-background: #262C49;
+    --color-gray-light: #7DA1BC;
+    --color-blue-light: #00CFFF;
+    --color-white: #FFFFFF;
+    --color-hover: #055bd8;
+    --color-active: #71efff;
+}
 
 html,
 body {
@@ -18,8 +17,7 @@ body {
     margin: 0;
     font-family: 'Raleway', sans-serif;
     background: var(--color-background);
-    color: rgb(3, 3, 3);
-    display: block;
+    color: white;
     overflow-x: hidden;
 }
 
@@ -60,9 +58,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 input[type="date"]::-webkit-calendar-picker-indicator:hover {
     filter: invert(1);
 }
-
-
-
 /* individual Card */
 
 .card {
