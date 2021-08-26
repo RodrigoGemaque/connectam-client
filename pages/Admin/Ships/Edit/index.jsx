@@ -1,7 +1,7 @@
 import AdminComponent from '../../../../components/shared/AdminComponent';
 import TitleAdminPanel from '../../../../components/shared/TitleAdminPanel';
 
-import withAuthAdmin from '../../../../components/WithAuthAdmin';
+import withAuthAdmin from '../../../../components/withAuthAdmin';
 
 import { useDispatch } from 'react-redux';
 import { clearShipToEdit } from '../../../../store/modules/admin/ship/reducer';
