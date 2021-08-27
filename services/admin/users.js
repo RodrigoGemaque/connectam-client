@@ -49,7 +49,7 @@ const UsersService = {
 
   update(user) {
     
-    return api.put(`/admin/v1/users/${user.id}`, { user: user });
+    return api.patch(`/admin/v1/users/${user.id}`, { user: user });
   },
 
   delete(id) {
